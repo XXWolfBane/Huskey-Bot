@@ -27,7 +27,6 @@ function generateXP() {
 
 
 
-
 //SQL Ends here
 
 bot.on("message", message => {
