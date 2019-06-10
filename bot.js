@@ -37,7 +37,7 @@ con.query(`SELECT * FROM userdatabase WHERE userid = ${message.author.id}`, (err
   
     let sql;
   
-    if (rows.length = < 1) {
+    if (rows.length < 1) {
       sql = `INSERT INTO userdatabase (userid, xp, ubl, globalxpsus) VALUES ('${message.author.id}', ${generateXP()}, '0', '0')`
     } else {
     let xp = rows[0].xp;
