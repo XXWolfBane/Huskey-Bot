@@ -23,6 +23,31 @@ function generateXP() {
   return Math.floor(Math.random() * (15 - 1 + 1))
 } //Generates a number for XP added to player.
 
+var con = new mysql.createConnection({
+  host: "remotemysql.com",
+  user: "kOKPHyqSH0",
+  password: process.env.b,
+  database: "kOKPHyqSH0"
+})
+bot.on("message", message => {
+con.query(`SELECT * FROM userdatabase WHERE userid = ${message.author.id}`, (err, rows) => {
+    if (err) throw err
+    if (message.content = "!xp") return;
+    if (message.author.bot) return;
+  
+    let sql;
+  
+    if (rows.length = < 1) {
+      sql = `INSERT INTO userdatabase (userid, xp, ubl, globalxpsus) VALUES ('${message.author.id}', ${generateXP()}, '0', '0')`
+    } else {
+    let xp = rows[0].xp;
+      sql = `UPDATE userdatabase SET xp = ${xp + generateXP()} WHERE id = ${message.author.id}`
+    }
+    
+  con.query(sql, console.log)
+  })
+}) // Lord this is ugly
+
 
 
 
